@@ -1,0 +1,10 @@
+{
+    "*.js": [
+        "npx standard --fix",
+        "git add"
+    ],
+    "*.vue": [
+        "npx eslint --fix",
+        "git add"
+    ]
+}
