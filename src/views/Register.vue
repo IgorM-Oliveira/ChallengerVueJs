@@ -6,21 +6,57 @@
         class='d-flex justify-content-center align-items-center left-login'
       >
         <div class='col-8'>
-          <b-alert
-            v-model='showDismissibleAlert'
-            variant='danger'
-            dismissible
-          >
-            E-mail ou Senha Incorreta
-          </b-alert>
           <h2 class='text-center mb-5 title-login'>
-            Login
+            Registro
           </h2>
 
           <b-form
             @submit='onSubmit'
             @reset='onReset'
           >
+            <b-form-group
+              label='Nome'
+              label-for='name'
+            >
+              <b-form-input
+                id='name'
+                v-model='form.name'
+                type='name'
+                placeholder='Digite seu Nome'
+                autocomplete='off'
+              />
+            </b-form-group>
+
+            <div class='d-flex'>
+              <b-form-group
+                label='Telefone'
+                label-for='tel'
+                class='mr-1'
+                style='width: 100%'
+              >
+                <b-form-input
+                  id='tel'
+                  v-model='form.phone'
+                  type='phone'
+                  placeholder='Digite seu Número'
+                  autocomplete='off'
+                />
+              </b-form-group>
+              <b-form-group
+                label='Nascimento'
+                label-for='date'
+                class='ml-1'
+                style='width: 100%'
+              >
+                <b-form-input
+                  id='date'
+                  v-model='form.birth'
+                  type='date'
+                  placeholder='DD-MM-YYYY'
+                />
+              </b-form-group>
+            </div>
+
             <b-form-group
               label='E-mail'
               label-for='email'
@@ -31,21 +67,30 @@
                 type='email'
                 placeholder='Digite seu Email'
                 autocomplete='off'
-                required
               />
             </b-form-group>
 
             <b-form-group label-for='password'>
               <label class='d-flex justify-content-between'>
                 Senha
-                <small><a href='#'>Esqueceu a Senha</a></small>
               </label>
               <b-form-input
                 id='password'
                 v-model='form.password'
                 type='password'
                 placeholder='Digite sua Senha'
-                required
+              />
+            </b-form-group>
+
+            <b-form-group label-for='confirm'>
+              <label class='d-flex justify-content-between'>
+                Confirmar Senha
+              </label>
+              <b-form-input
+                id='confirm'
+                v-model='form.confirm'
+                type='password'
+                placeholder='Digite sua Confirmar Senha'
               />
             </b-form-group>
 
@@ -56,7 +101,7 @@
                 block
                 class='mr-2'
               >
-                Entrar
+                Salvar
               </b-button>
 
               <b-button
@@ -66,15 +111,14 @@
                 Limpar
               </b-button>
             </div>
-
             <hr>
             <b-button
               type='button'
               variant='outline-secondary'
               block
-              href='/register'
+              href='/login'
             >
-              Não tenho conta
+              Voltar
             </b-button>
           </b-form>
         </div>
@@ -84,7 +128,7 @@
         class='d-flex justify-content-center align-items-center'
       >
         <img
-          src='../assets/login.svg'
+          src='../assets/register.svg'
           alt='login'
           class='img-login'
         >
@@ -98,8 +142,12 @@ export default {
   data () {
     return {
       form: {
+        name: '',
+        phone: '',
+        birth: '',
         email: '',
-        password: ''
+        password: '',
+        confirm: ''
       },
       showDismissibleAlert: false
     }
@@ -111,8 +159,18 @@ export default {
     },
     onReset (event) {
       event.preventDefault()
+      this.form.name = ''
+      this.form.phone = ''
+      this.form.birth = ''
       this.form.email = ''
       this.form.password = ''
+      this.form.confirm = ''
+    },
+    onContext (ctx) {
+      // The date formatted in the locale, or the `label-no-date-selected` string
+      this.formatted = ctx.selectedFormatted
+      // The following will be an empty string until a valid date is entered
+      this.selected = ctx.selectedYMD
     }
   }
 }
