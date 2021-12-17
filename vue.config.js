@@ -8,5 +8,7 @@ module.exports = {
         '@services': path.resolve(__dirname, 'src/services')
       }
     }
-  }
+  },
+
+  lintOnSave: false
 }

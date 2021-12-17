@@ -1,6 +1,7 @@
 <template>
   <div id='app'>
     <b-navbar
+      v-if='notIsLoginPage'
       type='dark'
       variant='dark'
     >
@@ -21,3 +22,13 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    notIsLoginPage () {
+      return this.$route.name !== 'Login'
+    }
+  }
+}
+</script>
