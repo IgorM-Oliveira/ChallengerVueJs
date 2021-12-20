@@ -24,6 +24,7 @@
                 type='name'
                 placeholder='Digite seu Nome'
                 autocomplete='off'
+                :maxlength='100'
               />
             </b-form-group>
 
@@ -40,6 +41,7 @@
                   type='phone'
                   placeholder='Digite seu Número'
                   autocomplete='off'
+                  :maxlength='12'
                 />
               </b-form-group>
               <b-form-group
@@ -67,6 +69,7 @@
                 type='email'
                 placeholder='Digite seu Email'
                 autocomplete='off'
+                :maxlength='50'
               />
             </b-form-group>
 
@@ -79,6 +82,7 @@
                 v-model='form.password'
                 type='password'
                 placeholder='Digite sua Senha'
+                :maxlength='10'
               />
             </b-form-group>
 
@@ -91,6 +95,7 @@
                 v-model='form.confirm'
                 type='password'
                 placeholder='Digite sua Confirmar Senha'
+                :maxlength='10'
               />
             </b-form-group>
 
@@ -165,6 +170,13 @@ export default {
       this.form.email = ''
       this.form.password = ''
       this.form.confirm = ''
+    },
+    format () {
+      this.form.phone.substring(0, 100)
+      this.form.phone.substring(0, 12)
+      this.form.email.substring(0, 50)
+      this.form.password.substring(0, 10)
+      this.form.confirm.substring(0, 10)
     },
     onContext (ctx) {
       // The date formatted in the locale, or the `label-no-date-selected` string

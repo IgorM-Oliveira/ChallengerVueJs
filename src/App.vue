@@ -5,7 +5,7 @@
       type='dark'
       variant='dark'
     >
-      <b-navbar-brand href='/'>
+      <b-navbar-brand href='/home'>
         Inicio
       </b-navbar-brand>
 
@@ -27,7 +27,7 @@
             text='Perfil'
             right
           >
-            <b-dropdown-item href='/login'>
+            <b-dropdown-item href='/'>
               Logout
             </b-dropdown-item>
           </b-nav-item-dropdown>

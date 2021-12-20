@@ -54,6 +54,7 @@
                 type='submit'
                 variant='primary'
                 block
+                href='/home'
                 class='mr-2'
               >
                 Entrar
