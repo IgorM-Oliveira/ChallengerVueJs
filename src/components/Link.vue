@@ -13,20 +13,10 @@
         type='button'
         variant='primary'
         block
-        href='/'
         style='color: white'
       >
-        Entrar
+        Reduzir
       </b-button>
     </b-form>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Link',
-  props: {
-    msg: String
-  }
-}
-</script>
