@@ -1,4 +1,8 @@
 {
+  "globals": {
+    "localStorage": true,
+    "fetch": true
+  },
   "parserOptions": {
     "parser": "babel-eslint",
     "sourceType": "module"

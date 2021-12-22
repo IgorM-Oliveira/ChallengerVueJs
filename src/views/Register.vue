@@ -11,13 +11,67 @@
         >
           <div class='col-8'>
             <h2 class='text-center mb-5 title-login'>
-              Login
+              Registro
             </h2>
 
             <b-form
               @submit.stop.prevent='handleSubmit(onSubmit)'
               @reset='onReset'
             >
+              <validation-provider
+                v-slot='validationContext'
+                name='Nome'
+                :rules='{ required: true, min: 3 }'
+              >
+                <b-form-group
+                  label='Nome'
+                  label-for='name'
+                >
+                  <b-form-input
+                    id='name'
+                    v-model='form.name'
+                    :state='getValidationState(validationContext)'
+                    placeholder='Digite seu Nome'
+                    autocomplete='off'
+                    :maxlength='100'
+                  />
+                  <b-form-invalid-feedback id='input-1-live-feedback'>
+                    O campo Nome é obrigatório
+                  </b-form-invalid-feedback>
+                </b-form-group>
+              </validation-provider>
+
+              <div class='d-flex'>
+                <b-form-group
+                  label='Telefone'
+                  label-for='tel'
+                  class='me-1'
+                  style='width: 100%'
+                >
+                  <b-form-input
+                    id='tel'
+                    v-model='form.phone'
+                    type='tel'
+                    placeholder='Digite seu Número'
+                    autocomplete='off'
+                    :maxlength='12'
+                  />
+                </b-form-group>
+                <b-form-group
+                  label='Nascimento'
+                  label-for='date'
+                  class='mb-1'
+                  style='width: 100%'
+                >
+                  <b-form-input
+                    id='date'
+                    v-model='form.birth'
+                    type='date'
+                    placeholder='DD-MM-YYYY'
+                  />
+                </b-form-group>
+              </div>
+
               <validation-provider
                 v-slot='validationContext'
                 name='E-mail'
@@ -31,9 +85,9 @@
                     id='email'
                     v-model='form.email'
                     :state='getValidationState(validationContext)'
-                    type='email'
                     placeholder='Digite seu Email'
                     autocomplete='off'
+                    :maxlength='50'
                   />
                   <b-form-invalid-feedback id='input-1-live-feedback'>
                     O campo E-mail é obrigatório
@@ -44,12 +98,11 @@
               <validation-provider
                 v-slot='validationContext'
                 name='Senha'
-                :rules='{ required: true }'
+                :rules='{ required: true, min: 3 }'
               >
                 <b-form-group label-for='password'>
                   <label class='d-flex justify-content-between'>
                     Senha
-                    <small><a href='#'>Esqueceu a Senha</a></small>
                   </label>
                   <b-form-input
                     id='password'
@@ -57,9 +110,33 @@
                     :state='getValidationState(validationContext)'
                     type='password'
                     placeholder='Digite sua Senha'
+                    :maxlength='10'
                   />
                   <b-form-invalid-feedback id='input-1-live-feedback'>
                     O campo Senha é obrigatório
+                  </b-form-invalid-feedback>
+                </b-form-group>
+              </validation-provider>
+
+              <validation-provider
+                v-slot='validationContext'
+                name='Confirmar Senha'
+                :rules='{ required: true, min: 3 }'
+              >
+                <b-form-group label-for='confirm'>
+                  <label class='d-flex justify-content-between'>
+                    Confirmar Senha
+                  </label>
+                  <b-form-input
+                    id='confirm'
+                    v-model='form.confirm'
+                    :state='getValidationState(validationContext)'
+                    type='password'
+                    placeholder='Digite sua Confirmar Senha'
+                    :maxlength='10'
+                  />
+                  <b-form-invalid-feedback id='input-1-live-feedback'>
+                    O campo Confirmar Senha é obrigatório
                   </b-form-invalid-feedback>
                 </b-form-group>
               </validation-provider>
@@ -71,7 +148,7 @@
                   block
                   class='my-2 mt-3'
                 >
-                  Entrar
+                  Salvar
                 </b-button>
 
                 <b-button
@@ -82,16 +159,14 @@
                   Limpar
                 </b-button>
               </div>
-
               <hr>
               <b-button
-                type='button'
                 variant='outline-secondary'
                 block
-                href='/register'
                 style='width: 100%'
+                href='/'
               >
-                Não tenho conta
+                Voltar
               </b-button>
             </b-form>
           </div>
@@ -101,7 +176,7 @@
           class='d-flex justify-content-center align-items-center'
         >
           <img
-            src='../assets/login.svg'
+            src='../assets/register.svg'
             alt='login'
             class='img-login'
           >
@@ -114,7 +189,7 @@
 <script>
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import LoginService from '@services/http/login'
+import RegisterService from '../services/http/register'
 import swal from 'sweetalert'
 
 export default {
@@ -124,18 +199,25 @@ export default {
   data () {
     return {
       form: {
+        name: null,
+        phone: null,
+        birth: null,
         email: null,
-        password: null
+        password: null,
+        confirm: null
       },
       showDismissibleAlert: false,
+      showConfirmAlert: false,
       isSubmitted: false
     }
   },
 
   validations () {
     return {
+      name: { required },
       email: { required },
-      password: { required }
+      password: { required },
+      confirm: { required }
     }
   },
 
@@ -144,25 +226,36 @@ export default {
       return dirty || validated ? valid : null
     },
     async onSubmit () {
-      try {
-        await LoginService.LoginUser(this.form)
-        await this.$router.push('/home')
-      } catch (error) {
-        await swal({
-          title: 'Senha Incorreta!',
-          text: 'Digite a senha cadastrada!',
+      if (this.form.confirm === this.form.password) {
+        await RegisterService.registerNewUser(this.form)
+        await this.$router.push('/')
+      } else {
+        swal({
+          title: 'Oops!',
+          text: 'Senha e Confirmar Senha não são iguais',
           icon: 'error'
         })
       }
     },
-    onReset (event) {
-      event.preventDefault()
-      this.form.email = ''
-      this.form.password = ''
+    onReset () {
+      this.form.name = null
+      this.form.phone = null
+      this.form.birth = null
+      this.form.email = null
+      this.form.password = null
+      this.form.confirm = null
 
       this.$nextTick(() => {
         this.$refs.observer.reset()
       })
+    },
+
+    format () {
+      this.form.phone.substring(0, 100)
+      this.form.phone.substring(0, 12)
+      this.form.email.substring(0, 50)
+      this.form.password.substring(0, 10)
+      this.form.confirm.substring(0, 10)
     }
   }
 }

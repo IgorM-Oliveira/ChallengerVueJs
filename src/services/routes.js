@@ -1,5 +1,5 @@
 import App from '@App'
-import HelloWorld from '@components/HelloWorld.vue'
+import Link from '@components/Link.vue'
 
 export default [
   {
@@ -10,6 +10,6 @@ export default [
   {
     path: '/helloworld',
     name: 'helloworld',
-    component: HelloWorld
+    component: Link
   }
 ]

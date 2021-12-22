@@ -1,21 +1,28 @@
 <template>
-  <div style='text-align: center'>
-    <img
-      alt='Vue logo'
-      src='../assets/logo.png'
+  <b-col class='d-flex justify-content-center align-items-center'>
+    <div
+      style='text-align: center'
+      class='col-5 mt-5'
     >
-    <HelloWorld msg='Welcome to Your Vue.js App' />
-  </div>
+      <img
+        alt='Vue logo'
+        src='../assets/link.svg'
+        width='500px'
+      >
+      <hr>
+      <Link />
+    </div>
+  </b-col>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Link from '@/components/Link.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Link
   }
 }
 </script>
