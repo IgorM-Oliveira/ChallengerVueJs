@@ -228,9 +228,8 @@ export default {
     async onSubmit () {
       if (this.form.confirm === this.form.password) {
         await RegisterService.registerNewUser(this.form)
-        await this.$router.push('/')
       } else {
-        swal({
+        await swal({
           title: 'Oops!',
           text: 'Senha e Confirmar Senha não são iguais',
           icon: 'error'

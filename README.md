@@ -1,12 +1,10 @@
-# Challenge Vue Js
-
-## Build Setup
+# ChallengerVueJs
 
 ```bash
 # install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:8080
 $ yarn dev
 
 # build for production and launch server
@@ -16,5 +14,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
