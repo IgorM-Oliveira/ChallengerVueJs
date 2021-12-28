@@ -17,7 +17,7 @@
 
 <script>
 // @ is an alias to /src
-import Link from '@/components/Link.vue'
+import Link from '../components/Link.vue'
 
 export default {
   name: 'Home',
