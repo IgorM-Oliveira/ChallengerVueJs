@@ -8,8 +8,7 @@ export default {
       const { token } = response.data
 
       if (token) {
-        // eslint-disable-next-line no-undef
-        localStorage.setItem('jwt', token)
+        window.localStorage.setItem('jwt', token)
         await swal({
           title: 'Excelente!',
           text: 'Usuário(a) cadastrado com sucesso!',
