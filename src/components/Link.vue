@@ -9,7 +9,6 @@
         type='url'
         placeholder='https://example.com'
         pattern='https://.*'
-        autocomplete='off'
       />
 
       <hr>
@@ -21,34 +20,32 @@
       >
         Reduzir
       </b-button>
+      <hr>
+
+      <b-form-input
+        id='shortness'
+        type='url'
+      />
     </b-form>
   </div>
 </template>
 
 <script>
 import shortener from '../services/http/shortener'
-import swal from 'sweetalert'
 
 export default {
   data () {
     return {
       form: {
-        url: null
+        url: null,
+        user: window.localStorage.getItem('name')
       }
     }
   },
 
   methods: {
     async onSubmit () {
-      try {
-        await shortener.url(this.form)
-      } catch (error) {
-        await swal({
-          title: 'Senha Incorreta!',
-          text: 'Digite a senha cadastrada!',
-          icon: 'error'
-        })
-      }
+      await shortener.url(this.form)
     }
   }
 }
