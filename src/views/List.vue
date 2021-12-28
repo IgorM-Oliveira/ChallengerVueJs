@@ -1,6 +1,6 @@
 <template>
   <b-col class='d-flex justify-content-center align-items-center'>
-    <div class='col-7 mt-5'>
+    <div class='col-10 mt-5'>
       <b-table
         :fields='fields'
         :items='items'
@@ -10,41 +10,31 @@
 </template>
 
 <script>
+import shortener from '../services/http/list'
+
 export default {
   data () {
     return {
       fields: [
         {
-          key: 'first',
-          label: 'Nome'
+          key: 'code',
+          label: 'Código'
         },
         {
-          key: 'age',
-          label: 'Idade'
+          key: 'url',
+          label: 'Relacionado'
         },
         {
-          key: 'sex',
-          label: 'Gênero'
-        },
-        {
-          // A virtual column with custom formatter
-          key: 'birthYear',
-          label: 'Nascimento',
-          formatter: (value, key, item) => {
-            return new Date().getFullYear() - item.age
-          }
+          key: 'hits',
+          label: 'Ranking'
         }
-      ],
-      items: [
-        { first: 'Igor', sex: 'Masculino', age: 20 },
-        { first: 'Helton', sex: 'Masculino', age: 25 },
-        { first: 'Ednei', sex: 'Masculino', age: 35 }
       ]
     }
   },
   methods: {
-    fullName (value) {
-      return `${ value.first } ${ value.last }`
+    async items () {
+      const array = await shortener.list()
+      return array.data.links
     }
   }
 }
