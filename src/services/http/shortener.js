@@ -2,22 +2,22 @@ import client from '@services/http/axios'
 import swal from 'sweetalert'
 
 export default {
-  async url (newShortener) {
+  url: async function (newShortener) {
+    console.log(newShortener)
     try {
-      const response = await client.post('/shortener', newShortener)
+      const response = await client.post('/short_register', newShortener)
 
-      document.getElementById('shortness').value = response.data.shortener
+      document.getElementById('shortness').value = response.data.shortener.code
 
       await swal({
         title: 'Sucesso',
-        text: `${response.data.message}`,
+        text: 'URL encurtada com sucesso!',
         icon: 'success'
       })
     } catch (error) {
-      const message = error.response.data.message
       await swal({
         title: 'Oops!',
-        text: `${message}`,
+        text: 'Atenção! Este URL já possui registro!',
         icon: 'error'
       })
     }

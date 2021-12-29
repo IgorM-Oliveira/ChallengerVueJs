@@ -2,9 +2,9 @@ import client from '@services/http/axios'
 import swal from 'sweetalert'
 
 export default {
-  LoginUser: async function (user) {
+  Login: async function (user) {
     try {
-      const response = await client.post('/user_login', user)
+      const response = await client.post('/authenticate', user)
       const { token } = response.data
 
       window.localStorage.setItem('jwt', token)
@@ -15,7 +15,7 @@ export default {
       if (token) {
         await swal({
           title: 'Sucesso!',
-          text: `${response.data.message}`,
+          text: 'Usuário(a) logado com sucesso!',
           icon: 'success'
         })
       }

@@ -32,20 +32,28 @@
 
 <script>
 import shortener from '../services/http/shortener'
+import swal from 'sweetalert'
 
 export default {
   data () {
     return {
       form: {
-        url: null,
-        user: window.localStorage.getItem('name')
+        url: null
       }
     }
   },
 
   methods: {
     async onSubmit () {
-      await shortener.url(this.form)
+      try {
+        await shortener.url(this.form)
+      } catch (err) {
+        await swal({
+          title: 'Oops!',
+          text: 'Alguma coisa deu errado aqui!',
+          icon: 'error'
+        })
+      }
     }
   }
 }

@@ -114,7 +114,7 @@
 <script>
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import LoginService from '@services/http/login'
+import LoginService from '../services/http/login'
 import swal from 'sweetalert'
 
 export default {
@@ -145,7 +145,7 @@ export default {
     },
     async onSubmit () {
       try {
-        await LoginService.LoginUser(this.form)
+        await LoginService.Login(this.form)
         await this.$router.push('/home')
       } catch (error) {
         await swal({
