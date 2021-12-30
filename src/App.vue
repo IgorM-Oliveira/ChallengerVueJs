@@ -7,6 +7,15 @@
       variant='dark'
     >
       <b-navbar-brand
+        v-if='!notIsToken'
+        class='ms-3'
+        href='/anonymous'
+      >
+        Inicio
+      </b-navbar-brand>
+
+      <b-navbar-brand
+        v-if='notIsToken'
         class='ms-3'
         href='/home'
       >
@@ -21,22 +30,22 @@
         style='display: flex; justify-content: space-between'
       >
         <b-navbar-nav>
-          <b-nav-item href='/list'>
+          <b-nav-item
+            v-if='notIsToken'
+            href='/list'
+          >
             Listar
           </b-nav-item>
-          <b-nav-item href='/person'>
-            Contador
+          <b-nav-item href='/ranking'>
+            Ranking
           </b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav>
           <b-nav-item-dropdown right>
             <template #button-content>
-              <em>{{ name() }}</em>
+              <em>{{ name() || 'Anônimo' }}</em>
             </template>
-            <b-dropdown-item href='#'>
-              Perfil
-            </b-dropdown-item>
             <b-dropdown-item @click='logout'>
               Logout
             </b-dropdown-item>
@@ -53,6 +62,10 @@ export default {
   computed: {
     notIsLoginPage () {
       return this.$route.name !== 'Login' && this.$route.name !== 'Register'
+    },
+
+    notIsToken () {
+      return window.localStorage.getItem('jwt') ?? false
     }
   },
   methods: {

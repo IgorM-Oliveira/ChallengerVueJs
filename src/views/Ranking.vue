@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import shortener from '../services/http/list'
+import shortener from '../services/http/list-all'
 
 export default {
   data () {
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async items () {
-      const array = await shortener.list()
+      const array = await shortener.listAll()
       return array.data.links
     }
   }
