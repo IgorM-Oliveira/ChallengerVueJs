@@ -25,7 +25,6 @@ export default {
         text: 'Alguma coisa deu errado aqui!',
         icon: 'error'
       })
-      await this.$router.push('/register')
     }
   }
 }
