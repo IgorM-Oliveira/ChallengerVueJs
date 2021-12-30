@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import List from '../views/List.vue'
-import User from '../views/User.vue'
+import Ranking from '../views/Ranking.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
@@ -15,14 +15,19 @@ const routes = [
     component: Home
   },
   {
+    path: '/anonymous',
+    name: 'Anonymous',
+    component: Home
+  },
+  {
     path: '/list',
     name: 'Listar',
     component: List
   },
   {
-    path: '/person',
-    name: 'User',
-    component: User
+    path: '/ranking',
+    name: 'Ranking',
+    component: Ranking
   },
   {
     path: '/',

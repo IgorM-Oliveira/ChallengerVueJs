@@ -2,23 +2,26 @@ import client from '@services/http/axios'
 import swal from 'sweetalert'
 
 export default {
-  async registerNewUser (newUser) {
-    const response = await client.post('/user_register', newUser)
-    const { token } = response.data
+  Register: async function (newUser) {
+    try {
+      const response = await client.post('/register', newUser)
+      const { token } = response.data
 
-    if (token) {
-      // eslint-disable-next-line no-undef
-      localStorage.setItem('jwt', token)
-      await this.$router.push('/')
+      window.localStorage.setItem('jwt', token)
+      window.localStorage.setItem('name', response.data.user.name)
+      window.localStorage.setItem('birth', response.data.user.birth)
+      window.localStorage.setItem('email', response.data.user.email)
+
+      if (token) {
+        await swal({
+          title: 'Excelente!',
+          text: 'Usuário(a) cadastrado com sucesso!',
+          icon: 'success'
+        })
+      }
+    } catch (error) {
       await swal({
-        title: 'Excelente!',
-        text: 'Usuário(a) cadastrado com sucesso!',
-        icon: 'success'
-      })
-    } else {
-      await this.$router.push('/register')
-      await swal({
-        title: 'Oops!',
+        title: 'Oops! terste',
         text: 'Alguma coisa deu errado aqui!',
         icon: 'error'
       })
