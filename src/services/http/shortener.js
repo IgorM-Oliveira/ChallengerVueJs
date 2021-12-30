@@ -6,7 +6,7 @@ export default {
     try {
       const response = await client.post('/short_register', newShortener)
 
-      if (response.data.hits > 1) {
+      if (response.data.hits >= 1) {
         try {
           const newResponse = await client.put(`/short_update/${response.data._id}`, response.data)
 
