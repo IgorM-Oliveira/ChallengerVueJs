@@ -93,6 +93,17 @@
               >
                 Não tenho conta
               </b-button>
+
+              <hr>
+              <b-button
+                type='button'
+                variant='outline-secondary'
+                block
+                href='/anonymous'
+                style='width: 100%'
+              >
+                Anônimo
+              </b-button>
             </b-form>
           </div>
         </b-col>
@@ -146,6 +157,7 @@ export default {
     async onSubmit () {
       try {
         await LoginService.Login(this.form)
+
         await this.$router.push('/home')
       } catch (error) {
         await swal({
