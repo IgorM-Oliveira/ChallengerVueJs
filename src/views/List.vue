@@ -6,7 +6,17 @@
         hover
         :fields='fields'
         :items='items'
-      />
+      >
+        <template #cell(actions)='row'>
+          <b-button
+            size='sm'
+            class='mr-1'
+            @click='remove(row.item)'
+          >
+            Remover
+          </b-button>
+        </template>
+      </b-table>
     </div>
   </b-col>
 </template>
@@ -29,6 +39,10 @@ export default {
         {
           key: 'hits',
           label: 'Ranking'
+        },
+        {
+          key: 'actions',
+          label: 'Ação  '
         }
       ]
     }
@@ -36,7 +50,11 @@ export default {
   methods: {
     async items () {
       const array = await shortener.list()
+      console.log(array)
       return array.data.links
+    },
+    async remove (item) {
+      await shortener.delete(item._id)
     }
   }
 }
