@@ -2,6 +2,8 @@
   <b-col class='d-flex justify-content-center align-items-center'>
     <div class='col-10 mt-5'>
       <b-table
+        striped
+        hover
         :fields='fields'
         :items='items'
       />
@@ -17,16 +19,16 @@ export default {
     return {
       fields: [
         {
+          key: 'hits',
+          label: 'Ranking'
+        },
+        {
           key: 'code',
           label: 'Código'
         },
         {
           key: 'url',
           label: 'Relacionado'
-        },
-        {
-          key: 'hits',
-          label: 'Ranking'
         }
       ]
     }
