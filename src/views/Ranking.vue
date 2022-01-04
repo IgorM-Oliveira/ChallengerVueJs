@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import shortener from '../services/http/list-all'
+import shortener from '../services/http/list'
 
 export default {
   data () {
