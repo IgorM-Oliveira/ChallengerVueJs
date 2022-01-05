@@ -94,7 +94,7 @@
                 Não tenho conta
               </b-button>
 
-              <hr>
+<!--              <hr>
               <b-button
                 type='button'
                 variant='outline-secondary'
@@ -103,7 +103,7 @@
                 style='width: 100%'
               >
                 Anônimo
-              </b-button>
+              </b-button>-->
             </b-form>
           </div>
         </b-col>
