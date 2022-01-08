@@ -88,8 +88,8 @@
                 type='button'
                 variant='outline-secondary'
                 block
-                href='/register'
                 style='width: 100%'
+                @click='redirect()'
               >
                 Não tenho conta
               </b-button>
@@ -166,7 +166,9 @@ export default {
         })
       }
     },
-
+    async redirect () {
+      await this.$router.push('/register')
+    },
     async anonymous () {
       try {
         await LoginService.Anonymous()
@@ -179,7 +181,6 @@ export default {
         })
       }
     },
-
     onReset (event) {
       event.preventDefault()
       this.form.email = ''
