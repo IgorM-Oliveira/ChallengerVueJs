@@ -88,22 +88,22 @@
                 type='button'
                 variant='outline-secondary'
                 block
-                href='/register'
                 style='width: 100%'
+                @click='redirect()'
               >
                 Não tenho conta
               </b-button>
 
-<!--              <hr>
+              <hr>
               <b-button
                 type='button'
                 variant='outline-secondary'
                 block
-                href='/anonymous'
                 style='width: 100%'
+                @click='anonymous()'
               >
                 Anônimo
-              </b-button>-->
+              </b-button>
             </b-form>
           </div>
         </b-col>
@@ -157,9 +157,23 @@ export default {
     async onSubmit () {
       try {
         await LoginService.Login(this.form)
-
         await this.$router.push('/home')
       } catch (error) {
+        await swal({
+          title: 'Senha Incorreta!',
+          text: 'Digite a senha cadastrada!',
+          icon: 'error'
+        })
+      }
+    },
+    async redirect () {
+      await this.$router.push('/register')
+    },
+    async anonymous () {
+      try {
+        await LoginService.Anonymous()
+        await this.$router.push('/home')
+      } catch (err) {
         await swal({
           title: 'Senha Incorreta!',
           text: 'Digite a senha cadastrada!',
