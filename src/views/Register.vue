@@ -164,7 +164,7 @@
                 variant='outline-secondary'
                 block
                 style='width: 100%'
-                href='/'
+                @click='redirect()'
               >
                 Voltar
               </b-button>
@@ -244,6 +244,9 @@ export default {
           icon: 'error'
         })
       }
+    },
+    async redirect () {
+      await this.$router.push('/')
     },
     onReset () {
       this.form.name = null

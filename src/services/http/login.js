@@ -27,5 +27,57 @@ export default {
       })
       await this.$router.push('/')
     }
+  },
+  Anonymous: async function () {
+    try {
+      const response = await client.post('/register_anonymous')
+
+      if (response.data._id) {
+        try {
+          const newResponse = await client.post('/authenticate', {
+            email: response.data.email,
+            password: 'anonymous'
+          })
+
+          console.log(newResponse)
+
+          const { token } = newResponse.data
+
+          window.localStorage.setItem('jwt', token)
+          window.localStorage.setItem('name', newResponse.data.user.name)
+          window.localStorage.setItem('birth', newResponse.data.user.birth)
+          window.localStorage.setItem('email', newResponse.data.user.email)
+
+          return await swal({
+            title: 'Sucesso',
+            text: 'URL atualizada com sucesso!',
+            icon: 'success'
+          })
+        } catch (err) {
+          return await swal({
+            title: 'Oops!',
+            text: 'Atenção! Não foi possivel atualizar!',
+            icon: 'error'
+          })
+        }
+      }
+
+      const { token } = response.data
+
+      if (token) {
+        await swal({
+          title: 'Excelente!',
+          text: 'Logado como anônimo!',
+          icon: 'success'
+        })
+      }
+    } catch (error) {
+      await swal({
+        title: 'Oops! terste',
+        text: 'Alguma coisa deu errado aqui!',
+        icon: 'error'
+      })
+      await this.$router.push('/')
+    }
   }
 }
