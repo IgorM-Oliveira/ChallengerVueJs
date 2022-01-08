@@ -94,16 +94,16 @@
                 Não tenho conta
               </b-button>
 
-<!--              <hr>
+              <hr>
               <b-button
                 type='button'
                 variant='outline-secondary'
                 block
-                href='/anonymous'
                 style='width: 100%'
+                @click='anonymous()'
               >
                 Anônimo
-              </b-button>-->
+              </b-button>
             </b-form>
           </div>
         </b-col>
@@ -157,7 +157,6 @@ export default {
     async onSubmit () {
       try {
         await LoginService.Login(this.form)
-
         await this.$router.push('/home')
       } catch (error) {
         await swal({
@@ -167,6 +166,20 @@ export default {
         })
       }
     },
+
+    async anonymous () {
+      try {
+        await LoginService.Anonymous()
+        await this.$router.push('/home')
+      } catch (err) {
+        await swal({
+          title: 'Senha Incorreta!',
+          text: 'Digite a senha cadastrada!',
+          icon: 'error'
+        })
+      }
+    },
+
     onReset (event) {
       event.preventDefault()
       this.form.email = ''
