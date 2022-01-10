@@ -7,17 +7,8 @@
       variant='dark'
     >
       <b-navbar-brand
-        v-if='!notIsToken'
         class='ms-3'
-        href='/anonymous'
-      >
-        Inicio
-      </b-navbar-brand>
-
-      <b-navbar-brand
-        v-if='notIsToken'
-        class='ms-3'
-        href='/home'
+        @click='home'
       >
         Inicio
       </b-navbar-brand>
@@ -32,11 +23,11 @@
         <b-navbar-nav>
           <b-nav-item
             v-if='notIsToken'
-            href='/list'
+            @click='list'
           >
             Listar
           </b-nav-item>
-          <b-nav-item href='/ranking'>
+          <b-nav-item @click='ranking'>
             Ranking
           </b-nav-item>
         </b-navbar-nav>
@@ -65,7 +56,7 @@ export default {
     },
 
     notIsToken () {
-      return window.localStorage.getItem('jwt') ?? false
+      return !(window.localStorage.getItem('email') === 'anonymity@gmail.com') || false
     }
   },
   methods: {
@@ -76,6 +67,18 @@ export default {
       localStorage.removeItem('birth')
 
       this.$router.push('/')
+    },
+
+    list () {
+      this.$router.push('/list')
+    },
+
+    home () {
+      this.$router.push('/home')
+    },
+
+    ranking () {
+      this.$router.push('/ranking')
     },
 
     name () {
