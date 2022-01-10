@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'https://challenge-node-js.herokuapp.com/'
+  baseURL: process.env.VUE_APP_DOMAIN_WEB
 })
 
 client.interceptors.request.use(
