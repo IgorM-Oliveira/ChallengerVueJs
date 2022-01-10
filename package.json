@@ -5,15 +5,12 @@
   "description": "",
   "author": "",
   "scripts": {
-    "start": "npm run lint-fix && npm run serve",
+    "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "lint-fix": "npm run lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": "^14.18.2"
   },
   "main": "index.js",
   "dependencies": {
