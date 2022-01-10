@@ -73,7 +73,7 @@ export default {
       }
     } catch (error) {
       await swal({
-        title: 'Oops! terste',
+        title: 'Oops!',
         text: 'Alguma coisa deu errado aqui!',
         icon: 'error'
       })
