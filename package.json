@@ -12,9 +12,6 @@
     "lint-fix": "npm run lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "^14.18.2"
-  },
   "main": "index.js",
   "dependencies": {
     "@vue/composition-api": "^1.4.2",
