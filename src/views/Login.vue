@@ -49,7 +49,7 @@
                 <b-form-group label-for='password'>
                   <label class='d-flex justify-content-between'>
                     Senha
-                    <small><a href='#'>Esqueceu a Senha</a></small>
+                    <!--                    <small><a href='#'>Esqueceu a Senha</a></small>-->
                   </label>
                   <b-form-input
                     id='password'
