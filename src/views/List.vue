@@ -38,11 +38,13 @@ export default {
         },
         {
           key: 'hits',
-          label: 'Ranking'
+          label: 'Visitas',
+          class: 'text-center'
         },
         {
           key: 'actions',
-          label: 'Ação  '
+          label: 'Ação',
+          class: 'text-center'
         }
       ]
     }
