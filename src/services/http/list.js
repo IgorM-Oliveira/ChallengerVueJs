@@ -16,7 +16,7 @@ export default {
   },
   async list () {
     try {
-      return await client.get('/shortlist/person')
+      return await client.get('/shortlist/links')
     } catch (error) {
       const message = error.response.data.message
       await swal({
