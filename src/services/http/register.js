@@ -19,12 +19,9 @@ export default {
           icon: 'success'
         })
       }
+      await this.$router.push('/home')
     } catch (error) {
-      await swal({
-        title: 'Oops! terste',
-        text: 'Alguma coisa deu errado aqui!',
-        icon: 'error'
-      })
+      await this.$router.push('/')
     }
   }
 }
