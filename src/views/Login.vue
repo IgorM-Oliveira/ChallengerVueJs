@@ -175,10 +175,11 @@ export default {
     async anonymous () {
       try {
         await LoginService.Anonymous()
+        await this.$router.push('/home')
       } catch (err) {
         await swal({
           title: 'Senha Incorreta!',
-          text: 'Digite a senha cadastrada!',
+          text: 'Email ou Senha estão incorretos, verifique!',
           icon: 'error'
         })
       }
