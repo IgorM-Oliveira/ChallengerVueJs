@@ -154,6 +154,7 @@ export default {
     getValidationState ({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
+
     async onSubmit () {
       try {
         await LoginService.Login(this.form)
@@ -161,18 +162,19 @@ export default {
       } catch (error) {
         await swal({
           title: 'Senha Incorreta!',
-          text: 'Digite a senha cadastrada!',
+          text: 'Email ou Senha estão incorretos, verifique!',
           icon: 'error'
         })
       }
     },
+
     async redirect () {
       await this.$router.push('/register')
     },
+
     async anonymous () {
       try {
         await LoginService.Anonymous()
-        await this.$router.push('/home')
       } catch (err) {
         await swal({
           title: 'Senha Incorreta!',
@@ -181,6 +183,7 @@ export default {
         })
       }
     },
+
     onReset (event) {
       event.preventDefault()
       this.form.email = ''

@@ -229,7 +229,6 @@ export default {
       try {
         if (this.form.confirm === this.form.password) {
           await RegisterService.Register(this.form)
-          await this.$router.push('/home')
         } else {
           await swal({
             title: 'Oops!',
@@ -239,7 +238,7 @@ export default {
         }
       } catch (error) {
         await swal({
-          title: 'Oops! teste',
+          title: 'Oops!',
           text: 'Alguma coisa deu errado aqui!',
           icon: 'error'
         })
