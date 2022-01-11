@@ -161,7 +161,7 @@ export default {
         await this.$router.push('/home')
       } catch (error) {
         await swal({
-          title: 'Senha Incorreta!',
+          title: 'Oops!',
           text: 'Email ou Senha estão incorretos, verifique!',
           icon: 'error'
         })
