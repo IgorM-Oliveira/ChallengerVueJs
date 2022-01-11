@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: process.env.VUE_APP_DOMAIN_WEB
+  baseURL: process.env.VUE_APP_DOMAIN_DB
 })
 
 client.interceptors.request.use(
