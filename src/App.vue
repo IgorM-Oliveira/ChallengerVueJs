@@ -56,7 +56,6 @@ export default {
     },
 
     notIsToken () {
-      location.reload()
       return !(window.localStorage.getItem('email') === 'anonymity@gmail.com') || false
     }
   },
