@@ -4,6 +4,7 @@
       <b-table
         striped
         hover
+        :busy.sync='isBusy'
         :fields='fields'
         :items='items'
       />
@@ -17,10 +18,12 @@ import shortener from '../services/http/list'
 export default {
   data () {
     return {
+      isBusy: false,
       fields: [
         {
-          key: 'hits',
-          label: 'Ranking'
+          key: 'ranking',
+          label: 'Ranking',
+          class: 'text-center'
         },
         {
           key: 'code',
@@ -29,6 +32,11 @@ export default {
         {
           key: 'url',
           label: 'Relacionado'
+        },
+        {
+          key: 'hits',
+          label: 'Visitas',
+          class: 'text-center'
         }
       ]
     }
@@ -36,7 +44,16 @@ export default {
   methods: {
     async items () {
       const array = await shortener.listAll()
-      return array.data.links
+      const newArray = []
+      array.data.links.map((item, index) => {
+        newArray[index] = {
+          ranking: index + 1 + 'º',
+          code: item.code,
+          url: item.url,
+          hits: item.hits
+        }
+      })
+      return newArray
     }
   }
 }
