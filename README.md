@@ -6,6 +6,6 @@
 
 1. Clone o arquivo `.env.exemple`e renomei-o para `.env`.
 2. Execute o comando `yarn` ou `npm install` para baixar o node modules.
-3. Após a execução comando anterior, comece o projeto com `yarn serve` ou `node server`.
+3. Após a execução comando anterior, comece o projeto com `yarn serve` ou `npm start`.
 
 [vue-image]: https://medium.com/@anchietajunior/comece-a-utilizar-vue-js-em-poucos-minutos-511e515132e7
