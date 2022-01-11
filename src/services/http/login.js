@@ -19,7 +19,6 @@ export default {
           icon: 'success'
         })
       }
-      await this.$router.push('/home')
     } catch (error) {
       await this.$router.push('/')
     }
@@ -44,15 +43,15 @@ export default {
           window.localStorage.setItem('birth', newResponse.data.user.birth)
           window.localStorage.setItem('email', newResponse.data.user.email)
 
-          return await swal({
+          await swal({
             title: 'Sucesso',
-            text: 'URL atualizada com sucesso!',
+            text: 'Login anônimo, bem sucedido!',
             icon: 'success'
           })
         } catch (err) {
           return await swal({
             title: 'Oops!',
-            text: 'Atenção! Não foi possivel atualizar!',
+            text: 'Login anônimo, mau sucedido!',
             icon: 'error'
           })
         }
