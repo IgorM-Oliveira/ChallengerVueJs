@@ -19,7 +19,6 @@ export default {
           icon: 'success'
         })
       }
-      await this.$router.push('/home')
     } catch (error) {
       await this.$router.push('/')
     }

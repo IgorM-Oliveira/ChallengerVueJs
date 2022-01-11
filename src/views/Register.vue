@@ -226,20 +226,21 @@ export default {
       return dirty || validated ? valid : null
     },
     async onSubmit () {
-      try {
-        if (this.form.confirm === this.form.password) {
+      if (this.form.confirm === this.form.password) {
+        try {
           await RegisterService.Register(this.form)
-        } else {
+          await this.$router.push('/home')
+        } catch (error) {
           await swal({
             title: 'Oops!',
-            text: 'Senha e Confirmar Senha não são iguais',
+            text: 'Alguma coisa deu errado aqui!',
             icon: 'error'
           })
         }
-      } catch (error) {
+      } else {
         await swal({
           title: 'Oops!',
-          text: 'Alguma coisa deu errado aqui!',
+          text: 'Senha e Confirmar Senha não são iguais',
           icon: 'error'
         })
       }
